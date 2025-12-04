@@ -1,1 +1,243 @@
-HelloWorld
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World - 欢迎页面</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+    <!-- or -->
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <style>
+      /* 基本样式 */
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav ul li {
+        padding: 14px 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      nav ul li a:hover {
+        color: #4caf50;
+      }
+
+      main {
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      section {
+        margin-bottom: 30px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: #4caf50;
+      }
+
+      .card {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #333;
+        color: white;
+        margin-top: 20px;
+      }
+
+      .image-container {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+        }
+
+        nav ul li {
+          text-align: center;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Hello World</h1>
+        <p>欢迎来到我的示例页面</p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#home">首页</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#contact">联系</a></li>
+        <li><a href="#talk">评论</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <main>
+        <section id="home">
+          <div class="card">
+            <h2>欢迎来到Hello World页面</h2>
+            <p>
+              这是一个简单的HTML示例页面，展示了基本的HTML结构和一些CSS样式。
+            </p>
+            <p>您可以在这里添加您自己的内容和功能。</p>
+          </div>
+        </section>
+
+        <section id="about">
+          <div class="card">
+            <h2>关于我们</h2>
+            <p>这个页面是一个基础的HTML模板，包含了常见的页面元素：</p>
+            <ul>
+              <li>响应式设计的导航栏</li>
+              <li>内容卡片布局</li>
+              <li>图片展示区域</li>
+              <li>页脚信息</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="contact">
+          <div class="card">
+            <h2>联系我们</h2>
+            <p>如果您有任何问题或建议，请通过以下方式联系我们：</p>
+            <p>邮箱：example@example.com</p>
+            <p>电话：123-456-7890</p>
+          </div>
+        </section>
+
+        <section id="talk">
+          <div class="card">
+            <div id="gitalk-container"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2023 Hello World. 保留所有权利。</p>
+    </footer>
+
+    <script>
+      // 简单的JavaScript功能
+      document.addEventListener("DOMContentLoaded", function () {
+        // 平滑滚动效果
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 50,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // 添加卡片点击效果
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card) => {
+          card.addEventListener("click", function () {
+            this.style.transform = "scale(1.02)";
+            setTimeout(() => {
+              this.style.transform = "scale(1)";
+            }, 200);
+          });
+        });
+      });
+
+      var gitalk = new Gitalk({
+        clientID: "Ov23likveX3Z17Y2hGux",
+        clientSecret: "6a6c4214851727721a4ed107d316eff5a356ae47",
+        repo: "public",
+        owner: "s422346963",
+        admin: [
+          "s422346963",
+        ],
+        id: location.pathname, // 请确保你的 location 连接小于 50 个字符，否则，插件会生成失败
+        distractionFreeMode: false, // 专注模式
+      });
+
+      gitalk.render("gitalk-container");
+    </script>
+  </body>
+</html>
